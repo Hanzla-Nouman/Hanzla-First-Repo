@@ -33,7 +33,9 @@ const Box = ({content,stylesI}) => {
 
 const styles = StyleSheet.create({
   safearea:{
+  // padding:10
   flex:1
+
   },
     container:{
         justifyContent:"center",

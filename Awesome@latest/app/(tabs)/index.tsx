@@ -5,8 +5,10 @@ import {
   ScrollView,
   View,
   StatusBar,
+  Platform
 } from "react-native";
 import Box from "../../components/Box";
+import CustomButton from "../../components/CustomButtons/CustomButton"
 export default function HomeScreen() {
   return (
     <>
@@ -22,11 +24,12 @@ export default function HomeScreen() {
           <Box content={"Box 7"} stylesI={{ backgroundColor: "lightblue",flex:0.4 }} />
         </View>
         <View style={styles.center}>
-          <Text style={styles.text}>Hi</Text>
+          <Text style={styles.text}>Testing Specific OS</Text>
         </View>
         <View style={styles.center}>
           <View style={[styles.box1, styles.box1Shadow]}></View>
         </View>
+        <CustomButton/>
       </ScrollView>
     </>
   );
@@ -44,15 +47,24 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-    color: "white",
+    color: Platform.OS === "android" ? "red" : "white",
     fontSize: 20,
     marginVertical: 20,
   },
   box1: {
-    height: 200,
-    width: 300,
-    backgroundColor: "brown",
-    borderRadius: 10,
+    ...Platform.select({
+      ios:{height: 200,
+        width: 300,
+        backgroundColor: "brown",
+        borderRadius: 10},
+        android:{
+          height: 200,
+        width: 300,
+        backgroundColor: "yellow",
+        borderRadius: 5}
+        
+    })
+    
   },
   box1Shadow: {
     shadowColor: "red",
