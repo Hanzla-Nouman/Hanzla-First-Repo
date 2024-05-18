@@ -8,7 +8,10 @@ import {
   Platform
 } from "react-native";
 import Box from "../../components/Box";
-import CustomButton from "../../components/CustomButtons/CustomButton"
+import CustomButton from "../../components/CustomButton.android"
+
+
+
 export default function HomeScreen() {
   return (
     <>

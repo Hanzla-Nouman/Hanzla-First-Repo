@@ -12,7 +12,7 @@ import {
 <Pressable onPress={btnPressed} style={{
     justifyContent:"center",
     alignItems:"center",
-    background:"Yellow",
+    backgroundColor:"Yellow",
     padding:10
 }}>
   <Text style={{color:"white",fontSize: 20}}>Android</Text>
