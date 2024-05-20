@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Image, Platform,View,Text ,ScrollView,SafeAreaView,FlatList} from 'react-native';
+import { StyleSheet, Image, Platform,View,Text ,ScrollView,SafeAreaView,FlatList,Switch} from 'react-native';
 import pokemonList from './data.json'
 
 export default function TabTwoScreen() {
@@ -17,6 +17,9 @@ export default function TabTwoScreen() {
     })
    }
    </ScrollView> */}
+    <View style={{flexDirection:"row"}}>
+        <Text>Dark Mode</Text> <Switch value={true}/>
+        </View>
    <FlatList data={pokemonList}  keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>{return(
       <View key={item.id} style={styles.flex}>
       <Text style={styles.text}> {item.type}</Text>

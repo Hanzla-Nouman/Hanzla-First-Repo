@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   TextInput,
+  Switch
 } from "react-native";
 import groupedList from "./grouped-data.json";
 const SList = () => {
@@ -32,6 +33,7 @@ const SList = () => {
             <Text style={styles.text}>Section Seperateor</Text>
           )}
         />
+       
         <Text>{name}</Text>
         <TextInput
           style={styles.input}
@@ -57,6 +59,7 @@ const SList = () => {
           placeholder="Message"
           multiline
         />
+        
       </ScrollView>
     </>
   );
