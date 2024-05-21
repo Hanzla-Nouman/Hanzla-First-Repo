@@ -20,13 +20,20 @@ export default function TabTwoScreen() {
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
   const [isPosting, setisPosting] = useState(false)
+  const [errors, seterrors] = useState("")
   const fetchData = async (limit = 10) => {
+    try{
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
     );
     const data = await response.json();
     setpostList(data);
     setloading(false);
+  }catch(err){
+    setloading(false)
+    console.log("Error in fetching Data",err)
+    seterrors("Error in fetching Data")
+  }
   };
   const handleRefresh = ()=>{
     setRefreshing(true)
@@ -35,6 +42,7 @@ export default function TabTwoScreen() {
     
   }
   const handleSubmitPost = async ()=>{
+    try{
     setisPosting(true)
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
       method: "POST",
@@ -45,13 +53,18 @@ export default function TabTwoScreen() {
         title: title,
         body: body
       })
+      
     })
    const newPost  = await response.json()
    setpostList([newPost,...postList])
    setTitle("")
    setBody("")
    setisPosting(false)
-  }
+  }catch(err){
+    setisPosting(false)
+    console.log("Error in posting Data",err)
+    seterrors("Error in posting Data")
+  }}
   useEffect(() => {
     fetchData();
   }, []);
@@ -66,6 +79,7 @@ export default function TabTwoScreen() {
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
+        {errors && <View style={styles.errCont}><Text style={styles.errText}>{errors}</Text></View>}
       <View style={styles.formCont}>
        <Text style={styles.text}>Title</Text>
        <TextInput
@@ -145,4 +159,13 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderColor:"gray"
   },
+  errCont:{
+    backgroundColor:"red",
+    padding: 20,
+    borderRadius:15
+  },
+  errText:{
+    color:"white",
+    fontWeight:"bold"
+  }
 });
