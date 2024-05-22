@@ -8,6 +8,9 @@ const About = () => {
    <Button title='Navigate' onPress={()=>navigation.navigate("Home",{
     name:"Hanzla Nouman"
    })}/>
+   <Button title='Drawer' onPress={()=>navigation.toggleDrawer()}/>
+   <Button title='Contact' onPress={()=>navigation.jumpTo("Contact")}/>
+
    </>
   )
 }
